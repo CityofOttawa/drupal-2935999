@@ -109,7 +109,9 @@ class LayoutBuilderTest extends BrowserTestBase {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
 
-    $this->drupalLogin($this->drupalCreateUser(['configure any layout']));
+    // @todo In https://www.drupal.org/node/540008 switch this to logging in as
+    //   a user with the 'configure any layout' permission.
+    $this->drupalLogin($this->rootUser);
 
     LayoutBuilderEntityViewDisplay::load('node.bundle_with_section_field.default')
       ->enableLayoutBuilder()

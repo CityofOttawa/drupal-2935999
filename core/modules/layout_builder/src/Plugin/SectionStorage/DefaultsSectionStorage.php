@@ -146,6 +146,10 @@ class DefaultsSectionStorage extends SectionStorageBase implements ContainerFact
    * {@inheritdoc}
    */
   public function buildRoutes(RouteCollection $collection) {
+    if (!\Drupal::moduleHandler()->moduleExists('field_ui')) {
+      return;
+    }
+
     foreach ($this->getEntityTypes() as $entity_type_id => $entity_type) {
       // Try to get the route from the current collection.
       if (!$entity_route = $collection->get($entity_type->get('field_ui_base_route'))) {
